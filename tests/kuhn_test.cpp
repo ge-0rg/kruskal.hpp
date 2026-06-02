@@ -4,7 +4,8 @@
 
 #include <vector>
 
-using namespace graph;
+namespace graph {
+namespace {
 
 TEST(KuhnTest, SimpleGraph) {
   std::vector<std::vector<int>> g(3);
@@ -16,7 +17,9 @@ TEST(KuhnTest, SimpleGraph) {
 
   int size = 0;
   for (int i = 0; i < 3; ++i) {
-    if (mt[i] != -1) ++size;
+    if (mt[i] != -1) {
+      ++size;
+    }
   }
   EXPECT_EQ(size, 3);
 }
@@ -27,7 +30,12 @@ TEST(KuhnTest, EmptyGraph) {
 
   int size = 0;
   for (int i = 0; i < 3; ++i) {
-    if (mt[i] != -1) ++size;
+    if (mt[i] != -1) {
+      ++size;
+    }
   }
   EXPECT_EQ(size, 0);
 }
+
+}  // namespace
+}  // namespace graph

@@ -5,7 +5,8 @@
 
 namespace graph {
 
-std::vector<int> Kuhn(int n, int k, const std::vector<std::vector<int>>& g);
+std::vector<int> Kuhn(int n, int k,
+                      const std::vector<std::vector<int>>& g);
 
 }  // namespace graph
 
