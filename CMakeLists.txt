@@ -114,8 +114,10 @@ add_executable(
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
+  include/kuhn.hpp
   methods/main.cpp
   methods/methods.hpp
+  methods/kuhn_method.cpp
 )
 
 ####################################################################
@@ -140,6 +142,7 @@ add_executable(
   include/oriented_graph.hpp
   include/weighted_graph.hpp
   include/weighted_oriented_graph.hpp
+  include/kuhn.hpp
   tests/graph_test.cpp
   tests/io.hpp
   tests/main.cpp
@@ -149,6 +152,7 @@ add_executable(
   tests/test_core.hpp
   tests/weighted_graph_test.cpp
   tests/weighted_oriented_graph_test.cpp
+  tests/kuhn_test.cpp
 )
 
 #####################################################################
