@@ -1,7 +1,8 @@
 /**
  * @file include/kruskal.hpp
+ * @author [your name]
  *
- * Алгоритм Крускала.
+ * Алгоритм Крускала для построения минимального остовного дерева.
  */
 
 #ifndef INCLUDE_KRUSKAL_HPP_
@@ -15,22 +16,31 @@ namespace graph {
 
 /**
  * @brief Ребро графа для алгоритма Крускала.
+ *
+ * @tparam WeightType Тип веса рёбер.
  */
 template<typename WeightType>
 struct KruskalEdge {
+  /// Начало ребра.
   size_t from;
+  /// Конец ребра.
   size_t to;
+  /// Вес ребра.
   WeightType weight;
 };
 
 /**
  * @brief Алгоритм Крускала.
  *
- * @param graph Взвешенный граф.
- * @return Минимальное остовное дерево.
+ * @tparam GraphType Тип графа. Должен поддерживать методы Vertices() и
+ * Edges(). Должен иметь тип WeightType.
+ * @param graph Взвешенный неориентированный граф.
+ * @return Список рёбер минимального остовного дерева.
  *
- * Функция строит минимальное остовное дерево
- * взвешенного неориентированного графа.
+ * Функция строит минимальное остовное дерево взвешенного
+ * неориентированного графа. Вершины графа имеют произвольную нумерацию
+ * типа size_t, поэтому для хранения компонент связности используется
+ * словарь (unordered_map).
  */
 template<typename GraphType>
 std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
@@ -43,7 +53,6 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
     for (auto edge : graph.Edges(from)) {
       size_t to = edge.to;
       WeightType weight = edge.weight;
-
       if (from < to) {
         edges.push_back({from, to, weight});
       }
@@ -56,10 +65,9 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
         return a.weight < b.weight;
       });
 
-  std::unordered_map<size_t, size_t> tree_id;
-
+  std::unordered_map<size_t, size_t> treeId;
   for (size_t vertex : graph.Vertices()) {
-    tree_id[vertex] = vertex;
+    treeId[vertex] = vertex;
   }
 
   std::vector<KruskalEdge<WeightType>> result;
@@ -67,16 +75,13 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
   for (const auto& edge : edges) {
     size_t from = edge.from;
     size_t to = edge.to;
-
-    if (tree_id[from] != tree_id[to]) {
+    if (treeId[from] != treeId[to]) {
       result.push_back(edge);
-
-      size_t old_id = tree_id[to];
-      size_t new_id = tree_id[from];
-
+      size_t oldId = treeId[to];
+      size_t newId = treeId[from];
       for (size_t vertex : graph.Vertices()) {
-        if (tree_id[vertex] == old_id) {
-          tree_id[vertex] = new_id;
+        if (treeId[vertex] == oldId) {
+          treeId[vertex] = newId;
         }
       }
     }
@@ -87,4 +92,5 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
 
 }  // namespace graph
 
+#endif  // INCLUDE_KRUSKAL_HPP_
 #endif  // INCLUDE_KRUSKAL_HPP_
