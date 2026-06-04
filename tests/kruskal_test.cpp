@@ -6,11 +6,11 @@
  */
 
 #include <httplib.h>
-#include <nlohmann/json.hpp>
 #include <algorithm>
 #include <random>
 #include <string>
 #include <vector>
+#include <nlohmann/json.hpp>
 #include "test_core.hpp"
 
 static void EmptyGraphTest(httplib::Client* cli);
