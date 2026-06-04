@@ -1,19 +1,19 @@
 /**
  * @file include/kruskal.hpp
- * @author GEO
+ * @author [your name]
  *
  * Алгоритм Крускала для построения минимального остовного дерева.
  */
- 
+
 #ifndef INCLUDE_KRUSKAL_HPP_
 #define INCLUDE_KRUSKAL_HPP_
- 
+
 #include <algorithm>
 #include <unordered_map>
 #include <vector>
- 
+
 namespace graph {
- 
+
 /**
  * @brief Ребро графа для алгоритма Крускала.
  *
@@ -28,7 +28,7 @@ struct KruskalEdge {
   /// Вес ребра.
   WeightType weight;
 };
- 
+
 /**
  * @brief Алгоритм Крускала.
  *
@@ -46,9 +46,9 @@ template<typename GraphType>
 std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
     const GraphType& graph) {
   using WeightType = typename GraphType::WeightType;
- 
+
   std::vector<KruskalEdge<WeightType>> edges;
- 
+
   for (size_t from : graph.Vertices()) {
     for (size_t to : graph.Edges(from)) {
       if (from < to) {
@@ -57,20 +57,20 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
       }
     }
   }
- 
+
   std::sort(edges.begin(), edges.end(),
       [](const KruskalEdge<WeightType>& a,
          const KruskalEdge<WeightType>& b) {
         return a.weight < b.weight;
       });
- 
+
   std::unordered_map<size_t, size_t> treeId;
   for (size_t vertex : graph.Vertices()) {
     treeId[vertex] = vertex;
   }
- 
+
   std::vector<KruskalEdge<WeightType>> result;
- 
+
   for (const auto& edge : edges) {
     size_t from = edge.from;
     size_t to = edge.to;
@@ -85,11 +85,10 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
       }
     }
   }
- 
+
   return result;
 }
- 
+
 }  // namespace graph
- 
+
 #endif  // INCLUDE_KRUSKAL_HPP_
- 
