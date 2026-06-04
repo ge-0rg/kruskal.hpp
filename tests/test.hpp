@@ -32,6 +32,8 @@ void TestWeightedOrientedGraph();
 
 /**
  * @brief Набор тестов для алгоритма Крускала.
+ *
+ * @param cli Указатель на HTTP клиент.
  */
 void TestKruskal(httplib::Client* cli);
 
