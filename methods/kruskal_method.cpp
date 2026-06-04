@@ -1,6 +1,6 @@
 /**
  * @file methods/kruskal_method.cpp
- * @author [your name]
+ * @author GEO
  *
  * Серверная часть алгоритма Крускала.
  */
