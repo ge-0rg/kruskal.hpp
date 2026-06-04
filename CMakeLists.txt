@@ -147,8 +147,12 @@ add_executable(
   tests/io.hpp
   tests/kruskal_test.cpp
   tests/main.cpp
+  tests/oriented_graph_test.cpp
   tests/test.hpp
+  tests/test_core.cpp
   tests/test_core.hpp
+  tests/weighted_graph_test.cpp
+  tests/weighted_oriented_graph_test.cpp
 )
 
 #####################################################################
