@@ -1,6 +1,6 @@
 /*!
 @file kruskal.dox
-@author [your name]
+@author GEO
 
 @page kruskal Алгоритм Крускала
 
@@ -15,6 +15,18 @@
 так как вершины графа имеют произвольную нумерацию типа size_t.
 
 Асимптотика алгоритма:
+\f$
+O(M \log N + N^2)
+\f$.
+*/
+
+/*!
+@fn graph::Kruskal(const GraphType& graph)
+
+Функция реализует алгоритм Крускала, описанный в разделе
+@ref kruskal
+
+Время работы алгоритма:
 \f$
 O(M \log N + N^2)
 \f$.
