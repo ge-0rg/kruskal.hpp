@@ -1,6 +1,6 @@
 /**
  * @file tests/kruskal_test.cpp
- * @author [your name]
+ * @author GEO
  *
  * Тесты для алгоритма graph::Kruskal.
  */
