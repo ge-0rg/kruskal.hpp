@@ -1,19 +1,19 @@
 /**
  * @file include/kruskal.hpp
- * @author [your name]
+ * @author GEO
  *
  * Алгоритм Крускала для построения минимального остовного дерева.
  */
-
+ 
 #ifndef INCLUDE_KRUSKAL_HPP_
 #define INCLUDE_KRUSKAL_HPP_
-
+ 
 #include <algorithm>
 #include <unordered_map>
 #include <vector>
-
+ 
 namespace graph {
-
+ 
 /**
  * @brief Ребро графа для алгоритма Крускала.
  *
@@ -28,12 +28,12 @@ struct KruskalEdge {
   /// Вес ребра.
   WeightType weight;
 };
-
+ 
 /**
  * @brief Алгоритм Крускала.
  *
- * @tparam GraphType Тип графа. Должен поддерживать методы Vertices() и
- * Edges(). Должен иметь тип WeightType.
+ * @tparam GraphType Тип графа. Должен поддерживать методы Vertices(),
+ * Edges() и EdgeWeight(). Должен иметь тип WeightType.
  * @param graph Взвешенный неориентированный граф.
  * @return Список рёбер минимального остовного дерева.
  *
@@ -46,32 +46,31 @@ template<typename GraphType>
 std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
     const GraphType& graph) {
   using WeightType = typename GraphType::WeightType;
-
+ 
   std::vector<KruskalEdge<WeightType>> edges;
-
+ 
   for (size_t from : graph.Vertices()) {
-    for (auto edge : graph.Edges(from)) {
-      size_t to = edge.to;
-      WeightType weight = edge.weight;
+    for (size_t to : graph.Edges(from)) {
       if (from < to) {
+        WeightType weight = graph.EdgeWeight(from, to);
         edges.push_back({from, to, weight});
       }
     }
   }
-
+ 
   std::sort(edges.begin(), edges.end(),
       [](const KruskalEdge<WeightType>& a,
          const KruskalEdge<WeightType>& b) {
         return a.weight < b.weight;
       });
-
+ 
   std::unordered_map<size_t, size_t> treeId;
   for (size_t vertex : graph.Vertices()) {
     treeId[vertex] = vertex;
   }
-
+ 
   std::vector<KruskalEdge<WeightType>> result;
-
+ 
   for (const auto& edge : edges) {
     size_t from = edge.from;
     size_t to = edge.to;
@@ -86,11 +85,11 @@ std::vector<KruskalEdge<typename GraphType::WeightType>> Kruskal(
       }
     }
   }
-
+ 
   return result;
 }
-
+ 
 }  // namespace graph
-
+ 
 #endif  // INCLUDE_KRUSKAL_HPP_
-#endif  // INCLUDE_KRUSKAL_HPP_
+ 
