@@ -51,7 +51,8 @@ int KruskalMethod(const nlohmann::json& input,
   }
 
   auto result = Kruskal(graph);
-
+// Инициализируем result как пустой массив.
+  (*output)["result"] = nlohmann::json::array();
   int cost = 0;
   for (size_t i = 0; i < result.size(); i++) {
     (*output)["result"][i]["from"] = result[i].from;
