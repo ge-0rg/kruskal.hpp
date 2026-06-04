@@ -1,6 +1,6 @@
 /**
  * @file include/kruskal.hpp
- * @author [your name]
+ * @author GEO
  *
  * Алгоритм Крускала для построения минимального остовного дерева.
  */
